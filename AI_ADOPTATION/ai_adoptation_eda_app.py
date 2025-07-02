@@ -71,3 +71,7 @@ with tab4:
         fig7 = px.box(df, x="company_size", y="daily_active_users", color="company_size")
         st.plotly_chart(fig7, use_container_width=True)
 
+
+import os
+st.write("Current working dir:", os.getcwd())
+st.write("Files in dir:", os.listdir("AI_ADOPTATION"))
