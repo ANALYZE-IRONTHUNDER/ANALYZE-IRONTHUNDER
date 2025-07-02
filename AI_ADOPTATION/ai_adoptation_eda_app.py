@@ -3,14 +3,15 @@ import pandas as pd
 import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import os
 st.set_page_config(page_title="AI Adoption EDA", layout="wide")
 st.title("🤖 AI Tool Adoption EDA Dashboard")
 
 # Upload CSV
+st.write("Current directory:", os.getcwd())
+st.write("Files:", os.listdir("AI_ADOPTATION"))
 
-
-df = pd.read_csv("/mount/src/analyze-ironthunder/ANALYZE-IRONTHUNDER/main.AI_ADOPTATION/ai_adoption_dataset.csv")
+df = pd.read_csv("ANALYZE-IRONTHUNDER/main/AI_ADOPTATION/ai_adoption_dataset.csv")
 
     # Optional filters
 with st.sidebar:
