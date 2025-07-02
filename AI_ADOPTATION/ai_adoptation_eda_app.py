@@ -8,13 +8,12 @@ st.set_page_config(page_title="AI Adoption EDA", layout="wide")
 st.title("🤖 AI Tool Adoption EDA Dashboard")
 
 # Upload CSV
-uploaded_file = st.file_uploader("📁 Upload your dataset (.csv)", type=["csv"])
+df = pd.read_csv("https://raw.githubusercontent.com/ANALYZE-IRONTHUNDER/ANALYZE-IRONTHUNDER/refs/heads/main/AI_ADOPTATION/ai_adoption_dataset.csv")
 
-if uploaded_file:
-    df = pd.read_csv(uploaded_file)
+
 
     # Optional filters
-    with st.sidebar:
+with st.sidebar:
         st.header("🔍 Filters")
         year_filter = st.multiselect("Year", sorted(df['year'].unique()), default=sorted(df['year'].unique()))
         country_filter = st.multiselect("Country", sorted(df['country'].unique()), default=sorted(df['country'].unique()))
@@ -24,13 +23,12 @@ if uploaded_file:
     df = df[df['year'].isin(year_filter) & df['country'].isin(country_filter) & df['age_group'].isin(age_filter)]
 
     tab1, tab2, tab3, tab4 = st.tabs(["📌 Overview", "📈 Numeric Analysis", "📊 Categoricals", "📉 Trends & Comparisons"])
-
-    with tab1:
+with tab1:
         st.subheader("🧾 Dataset Snapshot")
         st.dataframe(df.head())
         st.write("Shape:", df.shape)
 
-    with tab2:
+with tab2:
         st.subheader("📈 Distribution of Numeric Features")
         num_cols = ['adoption_rate', 'daily_active_users']
         for col in num_cols:
@@ -43,7 +41,7 @@ if uploaded_file:
         sns.heatmap(df[num_cols].corr(), annot=True, cmap='coolwarm', ax=ax)
         st.pyplot(fig2)
 
-    with tab3:
+with tab3:
         st.subheader("📊 AI Tool Usage")
         fig3 = px.pie(df, names="ai_tool", title="AI Tool Distribution")
         st.plotly_chart(fig3, use_container_width=True)
@@ -57,7 +55,7 @@ if uploaded_file:
         st.plotly_chart(fig4, use_container_width=True)
 
 
-    with tab4:
+with tab4:
         st.subheader("📉 Adoption Rate by Industry")
         fig5 = px.box(df, x="industry", y="adoption_rate", color="industry")
         st.plotly_chart(fig5, use_container_width=True)
@@ -70,5 +68,3 @@ if uploaded_file:
         st.subheader("📊 Daily Active Users by Company Size")
         fig7 = px.box(df, x="company_size", y="daily_active_users", color="company_size")
         st.plotly_chart(fig7, use_container_width=True)
-else:
-    st.info("Upload a dataset to begin analysis.")
