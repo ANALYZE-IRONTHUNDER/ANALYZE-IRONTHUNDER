@@ -28,8 +28,7 @@ with tab1:
         st.subheader("🧾 Dataset Snapshot")
         st.dataframe(df.head())
         st.write("Shape:", df.shape)
-        st.write("Missing values:")
-        st.dataframe(df.isna().sum())
+     
 
 with tab2:
         st.subheader("📈 Distribution of Numeric Features")
