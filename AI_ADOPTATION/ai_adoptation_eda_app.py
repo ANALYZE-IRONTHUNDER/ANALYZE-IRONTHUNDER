@@ -10,7 +10,7 @@ st.title("🤖 AI Tool Adoption EDA Dashboard")
 # Upload CSV
 
 
-df = pd.read_csv("ANALYZE-IRONTHUNDER/AI_ADOPTATION/ai_adoption_dataset.csv")
+df = pd.read_csv("/mount/src/analyze-ironthunder/ANALYZE-IRONTHUNDER/main.AI_ADOPTATION/ai_adoption_dataset.csv")
 
     # Optional filters
 with st.sidebar:
